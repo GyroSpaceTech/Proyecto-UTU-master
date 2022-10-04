@@ -235,6 +235,7 @@
             this.lblInvitado.Size = new System.Drawing.Size(162, 16);
             this.lblInvitado.TabIndex = 15;
             this.lblInvitado.Text = "Inisciar sesión como invitado";
+            this.lblInvitado.Click += new System.EventHandler(this.lblInvitado_Click);
             // 
             // lblCorr
             // 

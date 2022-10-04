@@ -37,6 +37,7 @@ namespace Proyecto
             this.pnlAnuncio = new System.Windows.Forms.Panel();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.tmrAnuncios = new System.Windows.Forms.Timer(this.components);
+            this.lsBoxResultados = new System.Windows.Forms.ListBox();
             this.pnlAnuncio1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
@@ -46,7 +47,7 @@ namespace Proyecto
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Image = ((System.Drawing.Image)(resources.GetObject("label1.Image")));
-            this.label1.Location = new System.Drawing.Point(209, 269);
+            this.label1.Location = new System.Drawing.Point(203, 266);
             this.label1.MinimumSize = new System.Drawing.Size(328, 138);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(328, 138);
@@ -84,6 +85,17 @@ namespace Proyecto
             // 
             this.tmrAnuncios.Tick += new System.EventHandler(this.timer_Tick);
             // 
+            // lsBoxResultados
+            // 
+            this.lsBoxResultados.BackColor = System.Drawing.Color.Gainsboro;
+            this.lsBoxResultados.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lsBoxResultados.FormattingEnabled = true;
+            this.lsBoxResultados.Location = new System.Drawing.Point(223, 36);
+            this.lsBoxResultados.Name = "lsBoxResultados";
+            this.lsBoxResultados.Size = new System.Drawing.Size(308, 234);
+            this.lsBoxResultados.TabIndex = 5;
+            this.lsBoxResultados.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -91,6 +103,7 @@ namespace Proyecto
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(748, 450);
             this.ControlBox = false;
+            this.Controls.Add(this.lsBoxResultados);
             this.Controls.Add(this.pnlAnuncio);
             this.Controls.Add(this.pnlAnuncio1);
             this.Controls.Add(this.label1);
@@ -113,5 +126,6 @@ namespace Proyecto
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.Timer tmrAnuncios;
         private System.Windows.Forms.Label lblAnuncio;
+        private System.Windows.Forms.ListBox lsBoxResultados;
     }
 }

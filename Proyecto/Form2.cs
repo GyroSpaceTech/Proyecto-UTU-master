@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace Proyecto
 {
     public partial class Form2 : Form
     {
+        private MySqlConnection con = new MySqlConnection("Server=127.0.0.1; Database=CorePoint; Uid=Admin; Pwd=hello;");
         private int coin;
         private Random ran = new Random();
         public Form2()
@@ -19,24 +21,27 @@ namespace Proyecto
             InitializeComponent();
             //El siguiente código usa un switch y un valor random entre 2 valores para mostrar los 2 posibles anuncios de forma aleatoria
             //El mismo código es escalable y puede expandirse para otros anuncios.
-            coin = ran.Next(1,3);
-            switch (coin)
-            {
-                case 1:
-                    pnlAnuncio.BackgroundImage = Proyecto.Properties.Resources.Anuncio1;
-                    pnlAnuncio1.BackgroundImage = Proyecto.Properties.Resources.Anuncio1;
-                    break;
-                case 2:
-                    pnlAnuncio.BackgroundImage = Proyecto.Properties.Resources.Anuncio2;
-                    pnlAnuncio1.BackgroundImage = Proyecto.Properties.Resources.Anuncio2;
-                    break;
+            coin = ran.Next(1, 3);
+                switch (coin)
+                {
+                    case 1:
+                        pnlAnuncio.BackgroundImage = Proyecto.Properties.Resources.Anuncio1;
+                        pnlAnuncio1.BackgroundImage = Proyecto.Properties.Resources.Anuncio1;
+                        break;
+                    case 2:
+                        pnlAnuncio.BackgroundImage = Proyecto.Properties.Resources.Anuncio2;
+                        pnlAnuncio1.BackgroundImage = Proyecto.Properties.Resources.Anuncio2;
+                        break;
 
-            }
-            tmrAnuncios.Interval = 120000;//Aquí se define la frequencia del cambio, ponerlo en 120 segundos es una buena cantidd de tiempo de display por anuncio. pero puede ser má sofisticado para las proximas entregas
-            tmrAnuncios.Tick += new EventHandler(timer_Tick);
-            tmrAnuncios.Start();
+                }
+                this.tmrStart();
+            
+        }    
+
+        private void Conectar()
+        {
+            MySqlConnection con = new MySqlConnection("Server=127.0.0.1; Database=CorePoint; Uid=Admin; Pwd=hello;");
         }
-
 
         private void Form2_Load(object sender, EventArgs e)
         {
@@ -46,8 +51,8 @@ namespace Proyecto
         private void label1_Click(object sender, EventArgs e)
         {
 
-            Form3 form3 = new Form3();
-            form3.Dispose();
+            InicioRegistro ir = new InicioRegistro();
+            ir.Dispose();
             this.Dispose();
         }
 
@@ -76,6 +81,11 @@ namespace Proyecto
 
         }
             this.tmrStart();
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

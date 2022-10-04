@@ -7,34 +7,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace Proyecto
 {
     public partial class Menu1 : Form
     {
-        private Form2 form2 = new Form2();
+        private MySqlConnection con = new MySqlConnection("Server=127.0.0.1; Database=CorePoint; Uid=Admin; Pwd=hello;");
+        private Form2 form2;
         private int coin;
         private Random ran = new Random();
         public Menu1()
         {
             InitializeComponent();
             coin = ran.Next(0, 2);
-            if (coin == 1)
-            {
-                pnlAnuncio2.BackgroundImage = Proyecto.Properties.Resources.Anuncio1;
-                pnlAnuncio1.BackgroundImage = Proyecto.Properties.Resources.Anuncio1;
-            }
-            else
-            {
-                pnlAnuncio2.BackgroundImage = Proyecto.Properties.Resources.Anuncio2;
-                pnlAnuncio1.BackgroundImage = Proyecto.Properties.Resources.Anuncio2;
-            }
-            tmrAnuncios.Interval = 120000;
-            tmrAnuncios.Tick += new EventHandler(timer_Tick);
-            tmrAnuncios.Start();
-}
+            form2 = new Form2();
+                if (coin == 1)
+                {
+                    pnlAnuncio2.BackgroundImage = Proyecto.Properties.Resources.Anuncio1;
+                    pnlAnuncio1.BackgroundImage = Proyecto.Properties.Resources.Anuncio1;
+                }
+                else
+                {
+                    pnlAnuncio2.BackgroundImage = Proyecto.Properties.Resources.Anuncio2;
+                    pnlAnuncio1.BackgroundImage = Proyecto.Properties.Resources.Anuncio2;
+                }
+                tmrAnuncios.Interval = 120000;
+                tmrAnuncios.Tick += new EventHandler(timer_Tick);
+                tmrAnuncios.Start();
+            
+            
+        }
 
-
+ 
         private void label1_Click(object sender, EventArgs e)
         {
             form2.Show();
@@ -77,6 +82,18 @@ namespace Proyecto
 
             }
             this.idle();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click_1(object sender, EventArgs e)
+        {
+            Form4 form4 = new Form4();
+            form4.Show();
+            this.Dispose();
         }
     }
 }

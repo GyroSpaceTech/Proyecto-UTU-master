@@ -1,4 +1,4 @@
-﻿
+﻿/*
 namespace Proyecto
 {
     partial class Form3
@@ -157,4 +157,4 @@ namespace Proyecto
         private System.Windows.Forms.Label lblInvitado;
         private System.Windows.Forms.Label label5;
     }
-}
+}*/

@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -64,8 +64,8 @@ namespace Proyecto
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            /*El siguiente codigo cambia si el lenguaje del programa está en ingles
-              */
+            El siguiente codigo cambia si el lenguaje del programa está en ingles
+              
             if (english) //Si el valor de english es verdadero lo cambia a falso
             {
                 english = false;
@@ -98,3 +98,4 @@ namespace Proyecto
         }
     }
 }
+*/
