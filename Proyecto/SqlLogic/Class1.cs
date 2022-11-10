@@ -15,7 +15,14 @@ namespace Proyecto
             return com;
         }
         
+        public MySqlCommand Buscar(String opciones, String tabla,String opcion , MySqlConnection conect)
+        {
+            MySqlCommand com = new MySqlCommand("Select "+opciones+" from "+ tabla +" where "+opcion+";",conect);
+            return com;
+        }
         
+
     }
+
    
 }
