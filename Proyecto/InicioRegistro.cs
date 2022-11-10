@@ -7,7 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 using MySql.Data.MySqlClient;
+using static Proyecto.Logica;
 
 namespace Proyecto
 {
@@ -15,6 +17,7 @@ namespace Proyecto
     {
         private MySqlConnection con = new MySqlConnection("Server=127.0.0.1; Database=CorePoint; Uid=Admin; Pwd=hello;");
         private MySqlDataReader lector;
+        private Logica logic = new Logica();
         public InicioRegistro()
         {
             InitializeComponent();
@@ -37,11 +40,21 @@ namespace Proyecto
             {
                 if (txtContRegistro.Text.Equals(txtContConf.Text))
                 {
+                    if (cbxDominio.SelectedItem.ToString() != "Otro/Other") { 
                     Console.WriteLine(txtCorreoRegistro.Text + cbxDominio.SelectedItem);
                     con.Open();
                     MySqlCommand crn = new MySqlCommand("insert into usuarios values('" + txtCorreoRegistro.Text + cbxDominio.SelectedItem + "','" + txtContRegistro.Text + "','normal') ", con);
-                   crn.ExecuteNonQuery();
+                    crn.ExecuteNonQuery();
                     con.Close();
+                    }
+                    else
+                    {
+                        Console.WriteLine(txtCorreoRegistro.Text + cbxDominio.SelectedItem);
+                        con.Open();
+                        MySqlCommand crn = new MySqlCommand("insert into usuarios values('" + txtCorreoRegistro.Text + txtElectronico.Text + "','" + txtContRegistro.Text + "','normal') ", con);
+                        crn.ExecuteNonQuery();
+                        con.Close();
+                    }
                 }
                 else
                 {
@@ -53,7 +66,7 @@ namespace Proyecto
 
         private void txtError2_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void pnlRegistro_Paint(object sender, PaintEventArgs e)
@@ -68,7 +81,7 @@ namespace Proyecto
 
         private void cbxDominio_SelectedIndexChanged(object sender, EventArgs e)
         {
-            String selectedIt=Convert.ToString(cbxDominio.SelectedItem);
+            String selectedIt = Convert.ToString(cbxDominio.SelectedItem);
             switch (selectedIt)
             {
                 case "Otro/Other":
@@ -82,9 +95,10 @@ namespace Proyecto
 
         private void label8_Click(object sender, EventArgs e) //al precionar iniciar:
         {
-            String password=null;
+            String nombre = null;
+            String password = null;
             int test = 0;
-            int confirm=0;
+            int confirm = 0;
             char[] caracteres;
             caracteres = txtMail.Text.ToCharArray();
 
@@ -93,12 +107,13 @@ namespace Proyecto
                 test = test + 1;
                 if (s == '@')
                 {
-                    confirm = test+1;
+                    confirm = test + 1;
                 }
-                else {
+                else
+                {
                     test = test + 1;
-                     }
                 }
+            }
             Console.WriteLine(confirm);
 
             if (txtMail.Text != "" && txtCont.Text != "")
@@ -107,7 +122,7 @@ namespace Proyecto
                 MySqlCommand crn = new MySqlCommand("Select Contra, TipoUsuario from usuarios where correo='" + txtMail.Text + "';", con);
                 lector = crn.ExecuteReader();
                 password = txtCont.Text;
-                String tipoUsr=null;
+                String tipoUsr = null;
                 if (lector.HasRows)
                 {
                     while (lector.Read())
@@ -115,30 +130,38 @@ namespace Proyecto
                         switch (password == lector["Contra"].ToString())
                         {
                             case true:
-                                tipoUsr=lector["TipoUsuario"].ToString();
+                                tipoUsr = lector["TipoUsuario"].ToString();
                                 break;
                         }
                     }
                 }
-
-                switch (tipoUsr)
+                if (password == txtCont.Text)
                 {
-                    case "normal":
-                        con.Close();
-                        Menu1 f1 = new Menu1();
-                        f1.Show();
-                        this.Hide();
-                        break;
-                    case "pro":
-
-                        break;
-                    case "Admin":
-                        break;
+                    switch (tipoUsr)
+                    {
+                        case "normal":
+                            lector.Close();
+                            con.Close();
+                            Menu1 f1 = new Menu1();
+                            f1.Show();
+                            logic.Registro(txtMail.Text);
+                            break;
+                        case "pro":
+                            lector.Close();
+                            con.Close();
+                            Menu1 f2 = new Menu1();
+                            f2.Show();
+                            logic.Registro(txtMail.Text);
+                            break;
+                        case "Admin":
+                            break;
+                    }
                 }
             }
-            else { 
-            
-            
+            else
+            {
+
+
             }
 
             con.Close();
@@ -158,20 +181,20 @@ namespace Proyecto
         {
             int test = 0;
             char[] caracteres;
-            caracteres =txtElectronico.Text.ToCharArray();
+            caracteres = txtElectronico.Text.ToCharArray();
 
-            foreach(char s in caracteres)
+            foreach (char s in caracteres)
             {
                 test = test + 1;
             }
             Console.WriteLine(test);
-            if (txtElectronico.Text != null&& caracteres[0].Equals('@') && caracteres[test-4].Equals('.') )
+            if (txtElectronico.Text != null && caracteres[0].Equals('@') && caracteres[test - 4].Equals('.'))
             {
                 cbxDominio.Items.Add(txtElectronico.Text);
             }
             else
             {
-                txtError2.Visible=true;
+                txtError2.Visible = true;
                 txtError2.Text = "*Error Dominio erroneo*";
             }
             pnlOtro.Visible = false;

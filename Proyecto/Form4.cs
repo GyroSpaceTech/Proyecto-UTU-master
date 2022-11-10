@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
-using static Proyecto.Class1 ;
-
 namespace Proyecto
 {
     public partial class Form4 : Form
@@ -19,24 +10,43 @@ namespace Proyecto
         private MySqlConnection con = new MySqlConnection("Server=127.0.0.1; Database=CorePoint; Uid=Admin; Pwd=hello;");
         private int coin;
         private Random ran = new Random();
+        private String user;
+        private Class1 c1 = new Class1();
+        private Logica log = new Logica();
         public Form4()
         {
             InitializeComponent();
             coin = ran.Next(0, 2);
-            if (coin == 1)
+            con.Open();
+            string a = log.Recibir();
+            comando = c1.Buscar("TipoUsuario", "usuarios", "correo='" + a + "'", con);
+            lector = comando.ExecuteReader();
+            while (lector.Read())
             {
-                pnlAnuncio2.BackgroundImage = Proyecto.Properties.Resources.Anuncio1;
-                pnlAnuncio1.BackgroundImage = Proyecto.Properties.Resources.Anuncio1;
+                user = lector["TipoUsuario"].ToString();
+            }
+            con.Close();
+            if (user != "normal")
+            {
             }
             else
             {
-                pnlAnuncio2.BackgroundImage = Proyecto.Properties.Resources.Anuncio2;
-                pnlAnuncio1.BackgroundImage = Proyecto.Properties.Resources.Anuncio2;
+                if (coin == 1)
+                {
+                    pnlAnuncio2.BackgroundImage = Proyecto.Properties.Resources.Anuncio1;
+                    pnlAnuncio1.BackgroundImage = Proyecto.Properties.Resources.Anuncio1;
+                }
+                else
+                {
+                    pnlAnuncio2.BackgroundImage = Proyecto.Properties.Resources.Anuncio2;
+                    pnlAnuncio1.BackgroundImage = Proyecto.Properties.Resources.Anuncio2;
+                }
+                tmrAnuncios.Interval = 120000;
+                tmrAnuncios.Tick += new EventHandler(timer_Tick);
+                this.tmrStart();
             }
-            tmrAnuncios.Interval = 120000;
-            tmrAnuncios.Tick += new EventHandler(timer_Tick);
-            tmrAnuncios.Start();
             this.ComandoCategorías();
+
         }
         private void timer_Tick(object sender, EventArgs e)
         {
@@ -55,14 +65,25 @@ namespace Proyecto
             }
             this.tmrStart();
         }
+
+
         private void ComandoCategorías()
         {
             Class1 Comandos = new Class1();
-            con.Open();
+            try
+            {
+                con.Open();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Dispose();
+            }
             //Definir un  Mysql Command para correr esto 
-            comando=Comandos.Obtener("NomEquipo", "equipo", con);
+            comando = Comandos.Obtener("NomEquipo", "equipo", con);
             lector = comando.ExecuteReader();
-            if (lector.HasRows) {
+            if (lector.HasRows)
+            {
                 while (lector.Read())
                 {
                     ChkdEquipos.Items.Add(lector["NomEquipo"]);
@@ -82,15 +103,15 @@ namespace Proyecto
             comando = Comandos.Obtener("NomEvent , Edicion", "eventos", con);
             lector = comando.ExecuteReader();
             if (lector.HasRows)
+            {
+                while (lector.Read())
                 {
-                    while (lector.Read())
-                    {
-                        ChkdEventos.Items.Add(lector["NomEvent"] + ":" + lector["Edicion"]);
-                    }
+                    ChkdEventos.Items.Add(lector["NomEvent"] + ":" + lector["Edicion"]);
+                }
 
             }
             lector.Close();
-            if(ChkdEquipos.Items.Count==0&&ChkdEventos.Items.Count==0&&ChkdDeportes.Items.Count==0)
+            if (ChkdEquipos.Items.Count == 0 && ChkdEventos.Items.Count == 0 && ChkdDeportes.Items.Count == 0)
             {
                 ChkdEquipos.Items.Add("ERROR, NO HEMOS PODIDO RECOPILAR LAS TABLAS");
             }
@@ -103,15 +124,23 @@ namespace Proyecto
 
         private void lblGuardar_Click(object sender, EventArgs e)
         {
-            if (ChkdEquipos.CheckedItems.Count + ChkdDeportes.CheckedItems.Count + ChkdEventos.CheckedItems.Count > 6)
-            {
 
-            }
         }
 
         private void ChkdEquipos_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
-    }
-}
+
+        private void Form4_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+
+        }
+
+    } } 

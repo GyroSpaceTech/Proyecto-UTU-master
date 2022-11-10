@@ -38,7 +38,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblEvento = new System.Windows.Forms.Label();
             this.lblEquipos = new System.Windows.Forms.Label();
-            this.lblGuardar = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // pnlAnuncio2
@@ -60,28 +60,31 @@
             // ChkdDeportes
             // 
             this.ChkdDeportes.BackColor = System.Drawing.Color.Gainsboro;
+            this.ChkdDeportes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ChkdDeportes.FormattingEnabled = true;
             this.ChkdDeportes.Location = new System.Drawing.Point(220, 36);
             this.ChkdDeportes.Name = "ChkdDeportes";
-            this.ChkdDeportes.Size = new System.Drawing.Size(106, 409);
+            this.ChkdDeportes.Size = new System.Drawing.Size(106, 404);
             this.ChkdDeportes.TabIndex = 5;
             // 
             // ChkdEventos
             // 
             this.ChkdEventos.BackColor = System.Drawing.Color.Gainsboro;
+            this.ChkdEventos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ChkdEventos.FormattingEnabled = true;
             this.ChkdEventos.Location = new System.Drawing.Point(344, 36);
             this.ChkdEventos.Name = "ChkdEventos";
-            this.ChkdEventos.Size = new System.Drawing.Size(106, 409);
+            this.ChkdEventos.Size = new System.Drawing.Size(106, 404);
             this.ChkdEventos.TabIndex = 6;
             // 
             // ChkdEquipos
             // 
             this.ChkdEquipos.BackColor = System.Drawing.Color.Gainsboro;
+            this.ChkdEquipos.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ChkdEquipos.FormattingEnabled = true;
             this.ChkdEquipos.Location = new System.Drawing.Point(476, 36);
             this.ChkdEquipos.Name = "ChkdEquipos";
-            this.ChkdEquipos.Size = new System.Drawing.Size(106, 409);
+            this.ChkdEquipos.Size = new System.Drawing.Size(106, 404);
             this.ChkdEquipos.TabIndex = 7;
             this.ChkdEquipos.SelectedIndexChanged += new System.EventHandler(this.ChkdEquipos_SelectedIndexChanged);
             // 
@@ -121,15 +124,20 @@
             this.lblEquipos.TabIndex = 10;
             this.lblEquipos.Text = "Equipos";
             // 
-            // lblGuardar
+            // button1
             // 
-            this.lblGuardar.AutoSize = true;
-            this.lblGuardar.Location = new System.Drawing.Point(381, 463);
-            this.lblGuardar.Name = "lblGuardar";
-            this.lblGuardar.Size = new System.Drawing.Size(35, 13);
-            this.lblGuardar.TabIndex = 11;
-            this.lblGuardar.Text = "label2";
-            this.lblGuardar.Click += new System.EventHandler(this.lblGuardar_Click);
+            this.button1.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Shotgun", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.LightGoldenrodYellow;
+            this.button1.Location = new System.Drawing.Point(322, 446);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(159, 47);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Salir";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form4
             // 
@@ -137,7 +145,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Proyecto.Properties.Resources.Fondo;
             this.ClientSize = new System.Drawing.Size(800, 522);
-            this.Controls.Add(this.lblGuardar);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.lblEquipos);
             this.Controls.Add(this.lblEvento);
             this.Controls.Add(this.label1);
@@ -148,6 +156,7 @@
             this.Controls.Add(this.pnlAnuncio2);
             this.Name = "Form4";
             this.Text = "Form4";
+            this.Load += new System.EventHandler(this.Form4_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -164,6 +173,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblEvento;
         private System.Windows.Forms.Label lblEquipos;
-        private System.Windows.Forms.Label lblGuardar;
+        private System.Windows.Forms.Button button1;
     }
 }
