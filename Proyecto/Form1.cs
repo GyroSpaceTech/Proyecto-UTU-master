@@ -150,5 +150,9 @@ namespace Proyecto
         {
             this.Dispose();
         }
+        private void cbxLenguaje_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

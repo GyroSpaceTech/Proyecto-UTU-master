@@ -36,6 +36,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.tmrAnuncios = new System.Windows.Forms.Timer(this.components);
+            this.cbxLenguaje = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -104,12 +105,24 @@
             this.button2.Text = "Buscar";
             this.button2.UseVisualStyleBackColor = false;
             // 
+            // cbxLenguaje
+            // 
+            this.cbxLenguaje.AutoSize = true;
+            this.cbxLenguaje.BackColor = System.Drawing.Color.Transparent;
+            this.cbxLenguaje.Location = new System.Drawing.Point(304, 2);
+            this.cbxLenguaje.Name = "cbxLenguaje";
+            this.cbxLenguaje.Size = new System.Drawing.Size(60, 17);
+            this.cbxLenguaje.TabIndex = 15;
+            this.cbxLenguaje.Text = "English";
+            this.cbxLenguaje.UseVisualStyleBackColor = false;
+            // 
             // Form5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Proyecto.Properties.Resources.Fondo;
             this.ClientSize = new System.Drawing.Size(646, 407);
+            this.Controls.Add(this.cbxLenguaje);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pnlAnuncio);
@@ -119,6 +132,7 @@
             this.Name = "Form5";
             this.Text = "Form5";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -131,5 +145,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Timer tmrAnuncios;
+        private System.Windows.Forms.CheckBox cbxLenguaje;
     }
 }

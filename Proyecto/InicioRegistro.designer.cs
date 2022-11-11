@@ -48,8 +48,8 @@
             this.lblContr = new System.Windows.Forms.Label();
             this.txtCont = new System.Windows.Forms.TextBox();
             this.cbxLenguaje = new System.Windows.Forms.CheckBox();
-            this.btnIniciar = new System.Windows.Forms.Label();
             this.txtMail = new System.Windows.Forms.TextBox();
+            this.lblInicio = new System.Windows.Forms.Button();
             this.pnlInicioSesion.SuspendLayout();
             this.pnlRegistro.SuspendLayout();
             this.pnlOtro.SuspendLayout();
@@ -58,6 +58,7 @@
             // pnlInicioSesion
             // 
             this.pnlInicioSesion.BackColor = System.Drawing.Color.LimeGreen;
+            this.pnlInicioSesion.Controls.Add(this.lblInicio);
             this.pnlInicioSesion.Controls.Add(this.pnlRegistro);
             this.pnlInicioSesion.Controls.Add(this.txtRegistrarme);
             this.pnlInicioSesion.Controls.Add(this.lblInvitado);
@@ -65,7 +66,6 @@
             this.pnlInicioSesion.Controls.Add(this.lblContr);
             this.pnlInicioSesion.Controls.Add(this.txtCont);
             this.pnlInicioSesion.Controls.Add(this.cbxLenguaje);
-            this.pnlInicioSesion.Controls.Add(this.btnIniciar);
             this.pnlInicioSesion.Controls.Add(this.txtMail);
             this.pnlInicioSesion.Location = new System.Drawing.Point(1, -9);
             this.pnlInicioSesion.Name = "pnlInicioSesion";
@@ -276,18 +276,7 @@
             this.cbxLenguaje.TabIndex = 11;
             this.cbxLenguaje.Text = "English";
             this.cbxLenguaje.UseVisualStyleBackColor = false;
-            // 
-            // btnIniciar
-            // 
-            this.btnIniciar.AutoSize = true;
-            this.btnIniciar.BackColor = System.Drawing.Color.Transparent;
-            this.btnIniciar.Image = global::Proyecto.Properties.Resources.iniciar;
-            this.btnIniciar.Location = new System.Drawing.Point(283, 186);
-            this.btnIniciar.MinimumSize = new System.Drawing.Size(75, 23);
-            this.btnIniciar.Name = "btnIniciar";
-            this.btnIniciar.Size = new System.Drawing.Size(75, 23);
-            this.btnIniciar.TabIndex = 10;
-            this.btnIniciar.Click += new System.EventHandler(this.label8_Click);
+            this.cbxLenguaje.CheckedChanged += new System.EventHandler(this.cbxLenguaje_CheckedChanged);
             // 
             // txtMail
             // 
@@ -295,6 +284,21 @@
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(194, 20);
             this.txtMail.TabIndex = 9;
+            // 
+            // lblInicio
+            // 
+            this.lblInicio.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.lblInicio.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.lblInicio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblInicio.Font = new System.Drawing.Font("Shotgun", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInicio.ForeColor = System.Drawing.Color.LightGoldenrodYellow;
+            this.lblInicio.Location = new System.Drawing.Point(221, 182);
+            this.lblInicio.Name = "lblInicio";
+            this.lblInicio.Size = new System.Drawing.Size(82, 30);
+            this.lblInicio.TabIndex = 18;
+            this.lblInicio.Text = "Incio";
+            this.lblInicio.UseVisualStyleBackColor = false;
+            this.lblInicio.Click += new System.EventHandler(this.lblInicio_Click);
             // 
             // InicioRegistro
             // 
@@ -332,11 +336,11 @@
         private System.Windows.Forms.Label lblContr;
         private System.Windows.Forms.TextBox txtCont;
         private System.Windows.Forms.CheckBox cbxLenguaje;
-        private System.Windows.Forms.Label btnIniciar;
         private System.Windows.Forms.TextBox txtMail;
         private System.Windows.Forms.Panel pnlOtro;
         private System.Windows.Forms.TextBox txtElectronico;
         private System.Windows.Forms.ComboBox cbxDominio;
         private System.Windows.Forms.Label btnConfirmar;
+        private System.Windows.Forms.Button lblInicio;
     }
 }

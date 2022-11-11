@@ -104,12 +104,12 @@ namespace Proyecto
                             lstBxTiempoOro.Visible = false;
                             lstBxTiempoPlata.Visible = false;
                             lstBxTimempoBron.Visible = false;
-                            lstBxResultados.Items.Add("Id Resultado");
-                            lstBxEvento.Items.Add("Evento");
-                            lstBxE1.Items.Add("Equipo");
-                            lstBxE2.Items.Add("Equipo");
-                            lstBxPuntoE1.Items.Add("Puntos");
-                            lstBxPuntoE2.Items.Add("Puntos");
+                            lstBxResultados.Items.Add("Id");
+                            lstBxEvento.Items.Add("Evnt");
+                            lstBxE1.Items.Add("Team");
+                            lstBxE2.Items.Add("Team");
+                            lstBxPuntoE1.Items.Add("Pnts");
+                            lstBxPuntoE2.Items.Add("Pnts");
                             MySqlCommand com = new MySqlCommand("Select IdResultados ResultadoNº, NomEvent,Edicion, e.NomEquipo 'Equipo 1', n.NomEquipo 'Equipo 2', puntosE1 , PuntosE2 from partidos, eventos, deportes, equipo e, equipo n  where eventos.IdEvento = partidos.IdEvento and eventos.IdDeporte = deportes.IdDep and deportes.NomDep = '" + CBDeporte.SelectedItem.ToString() + "' and IdEquipo1 = e.IdEquipo and IdEquipo2 = n.IdEquipo  ;", con);
                             lector = com.ExecuteReader();
                             while (lector.Read())
@@ -146,10 +146,10 @@ namespace Proyecto
                             lstBxTiempoOro.Visible = false;
                             lstBxTiempoPlata.Visible = false;
                             lstBxTimempoBron.Visible = false;
-                            lstBxResultados.Items.Add("Id Resultado");
-                            lstBxEvento.Items.Add("Evento");
-                            lstBxE1.Items.Add("Equipo");
-                            lstBxE2.Items.Add("Equipo");
+                            lstBxResultados.Items.Add("Id");
+                            lstBxEvento.Items.Add("Evnt");
+                            lstBxE1.Items.Add("Team");
+                            lstBxE2.Items.Add("Team");
                             lstBxSetE1.Items.Add("Set");
                             lstBxSet2.Items.Add("Set");
                             MySqlCommand com = new MySqlCommand("Select IdResultados ResultadoNº, NomEvent, e.NomEquipo 'Equipo 1', n.NomEquipo 'Equipo 2', setE1 , SetE2 from partidos, eventos, deportes, equipo e, equipo n  where eventos.IdEvento = partidos.IdEvento and eventos.IdDeporte = deportes.IdDep and deportes.NomDep = '" + CBDeporte.SelectedItem.ToString() + "' and IdEquipo1 = e.IdEquipo and IdEquipo2 = n.IdEquipo  ;", con);
@@ -190,12 +190,12 @@ namespace Proyecto
                             lstBxPuntoE1.Visible = false;
                             lstBxPuntoE2.Visible = false;
 
-                            lstBxResultados.Items.Add("Id Resultado");
-                            lstBxEvento.Items.Add("Evento");
-                            lstBxE1.Items.Add("Equipo");
-                            lstBxTiempoOro.Items.Add("Oro");
-                            lstBxTiempoPlata.Items.Add("Plata");
-                            lstBxTimempoBron.Items.Add("Bronce");
+                            lstBxResultados.Items.Add("Id");
+                            lstBxEvento.Items.Add("Evnt");
+                            lstBxE1.Items.Add("Team");
+                            lstBxTiempoOro.Items.Add("1st");
+                            lstBxTiempoPlata.Items.Add("2nd");
+                            lstBxTimempoBron.Items.Add("3rd");
                             MySqlCommand com = new MySqlCommand("Select IdResultados ResultadoNº,NomEvent, e.NomEquipo 'Ganador', tiempoOro, tiempoPlata, tiempoBronce from partidos, eventos, deportes, equipo e, equipo n  where eventos.IdEvento = partidos.IdEvento and eventos.IdDeporte = deportes.IdDep and deportes.NomDep = '" + CBDeporte.SelectedItem.ToString() + "' and IdEquipo1 = e.IdEquipo  and IdEquipo2 =n.IdEquipo  ;  ", con); ;
                             lector = com.ExecuteReader();
                             while (lector.Read())
@@ -314,12 +314,5 @@ namespace Proyecto
         }
 
         
-        private void CBEquipo_SelectedIndexChanged(object sender, EventArgs e)
-        {  
-        }
-
-        private void CBEvento_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
     }
 }

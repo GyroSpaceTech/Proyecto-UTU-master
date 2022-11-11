@@ -202,7 +202,114 @@ namespace Proyecto
 
         private void lblInvitado_Click(object sender, EventArgs e)
         {
+            try
+            {
+                lector.Close();
+                con.Close();
+            }catch(Exception g) { }
+            Menu1 f1 = new Menu1();
+            f1.Show();
+        }
 
+        private void cbxLenguaje_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbxLenguaje.Checked == true)
+            {
+                lblCorr.Text = "Email";
+                lblCorreo.Text = "Email";
+                lblContr.Text = "Password";
+                lblCOnt.Text = "Password";
+                lblConfCOnt.Text = "Confirm Password";
+                txtError2.Text = "*Error, the passwords don't coincide*";
+                txtRegistrarme.Text = "Sign Up";
+                lblInicio.Text = "Log In";
+            }
+            else //Cambiar a español
+            {
+                lblCorr.Text = "Email";
+                lblCorreo.Text = "Email";
+                lblContr.Text = "Password";
+                lblCOnt.Text = "Password";
+                lblConfCOnt.Text = "Confirm Password";
+                txtError2.Text = "*Error, the passwords don't coincide*";
+                txtRegistrarme.Text = "Sign Up";
+                lblInicio.Text = "Log In";
+            }
+        }
+
+        private void lblInicio_Click(object sender, EventArgs e)
+        {
+
+            String nombre = null;
+            String password = null;
+            int test = 0;
+            int confirm = 0;
+            char[] caracteres;
+            caracteres = txtMail.Text.ToCharArray();
+
+            foreach (char s in caracteres)
+            {
+                test = test + 1;
+                if (s == '@')
+                {
+                    confirm = test + 1;
+                }
+                else
+                {
+                    test = test + 1;
+                }
+            }
+            Console.WriteLine(confirm);
+
+            if (txtMail.Text != "" && txtCont.Text != "")
+            {
+                con.Open();
+                MySqlCommand crn = new MySqlCommand("Select Contra, TipoUsuario from usuarios where correo='" + txtMail.Text + "';", con);
+                lector = crn.ExecuteReader();
+                password = txtCont.Text;
+                String tipoUsr = null;
+                if (lector.HasRows)
+                {
+                    while (lector.Read())
+                    {
+                        switch (password == lector["Contra"].ToString())
+                        {
+                            case true:
+                                tipoUsr = lector["TipoUsuario"].ToString();
+                                break;
+                        }
+                    }
+                }
+                if (password == txtCont.Text)
+                {
+                    switch (tipoUsr)
+                    {
+                        case "normal":
+                            lector.Close();
+                            con.Close();
+                            Menu1 f1 = new Menu1();
+                            f1.Show();
+                            logic.Registro(txtMail.Text);
+                            break;
+                        case "pro":
+                            lector.Close();
+                            con.Close();
+                            Menu1 f2 = new Menu1();
+                            f2.Show();
+                            logic.Registro(txtMail.Text);
+                            break;
+                        case "Admin":
+                            break;
+                    }
+                }
+            }
+            else
+            {
+
+
+            }
+
+            con.Close();
         }
     }
 }
