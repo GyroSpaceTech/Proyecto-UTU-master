@@ -7,7 +7,7 @@ namespace Proyecto
     {
         private MySqlDataReader lector;
         private MySqlCommand comando = new MySqlCommand();
-        private MySqlConnection con = new MySqlConnection("Server = 192.168.5.50; Database=spacetechnology; Uid=jose.laco; Pwd=55383035;");
+        private MySqlConnection con = new MySqlConnection("Server=127.0.0.1; Database=CorePoint; Uid=Admin; Pwd=hello;");
         private int coin;
         private Random ran = new Random();
         private String user;

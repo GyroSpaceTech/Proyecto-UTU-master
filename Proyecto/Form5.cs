@@ -13,7 +13,7 @@ namespace Proyecto
 {
     public partial class Form5 : Form
     {
-        private MySqlConnection con = new MySqlConnection("Server=192.168.5.50; Database=spacetechnology; Uid=jose.laco; Pwd=55383035;");
+        private MySqlConnection con = new MySqlConnection("Server=127.0.0.1; Database=CorePoint; Uid=Admin; Pwd=hello;");
         private int coin;
         private Random ran = new Random();
         private String user;
@@ -122,7 +122,6 @@ namespace Proyecto
         private void button2_Click(object sender, EventArgs e)
         {
             lsBxIntegrantesEquipo.Items.Clear();
-            lsBxIntegrantesEquipo.Items.Add("ID|Nombre/Name|Dorsal/Jersey #");
             con.Open();
             MySqlDataReader lector;
             MySqlCommand comando = new MySqlCommand ("Select * from deportes, equipo, deportistas where NomDep='"+comboBox1.SelectedItem.ToString()+"' and  NomEquipo='"+comboBox2.SelectedItem.ToString()+ "' and IdDep = IdDeporteJuega and equipo.IdEquipo=deportistas.IdEquipo ; ", con);

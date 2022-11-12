@@ -5,7 +5,7 @@ namespace Proyecto
 {
     public partial class Form2 : Form
     {
-        private MySqlConnection con = new MySqlConnection("Server=192.168.5.50; Database=spacetechnology; Uid=jose.laco; Pwd=55383035;");
+        private MySqlConnection con = new MySqlConnection("Server=127.0.0.1; Database=CorePoint; Uid=Admin; Pwd=hello;");
         private int coin;
         private MySqlDataReader lector;
         private MySqlCommand comando = new MySqlCommand();
@@ -247,7 +247,7 @@ namespace Proyecto
 
         private void Conectar()
         {
-            MySqlConnection con = new MySqlConnection("Server=192.168.5.50; Database=spacetechnology; Uid=jose.laco; Pwd=55383035;");
+            MySqlConnection con = new MySqlConnection("Server=127.0.0.1; Database=CorePoint; Uid=Admin; Pwd=hello;");
         }
 
         private void Form2_Load(object sender, EventArgs e)

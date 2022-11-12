@@ -15,7 +15,7 @@ namespace Proyecto
     {
         private MySqlDataReader lector;
         private MySqlCommand comando = new MySqlCommand();
-        private MySqlConnection con = new MySqlConnection("Server=192.168.5.50; Database=spacetechnology; Uid=jose.laco; Pwd=55383035;");
+        private MySqlConnection con = new MySqlConnection("Server=127.0.0.1; Database=CorePoint; Uid=Admin; Pwd=hello;");
 
         public FormAdmin3()
         {
@@ -38,6 +38,17 @@ namespace Proyecto
                     cBxDeporte.Items.Add(lector["IdDep"]);
                     cBxId.Items.Add(lector["IdDep"]);
                     cBxDepBaja.Items.Add(lector["IdDep"]);
+                }
+            }
+            lector.Close();
+            cBxEquiposBaja.Items.Clear();
+            comando = new MySqlCommand("Select IdEquipo from equipo",con);
+            lector = comando.ExecuteReader();
+            if (lector.HasRows)
+            {
+                while (lector.Read())
+                {
+                    cBxEquiposBaja.Items.Add(lector["IdEquipo"].ToString());
                 }
             }
             lector.Close();
@@ -82,7 +93,7 @@ namespace Proyecto
             try
             {
                 con.Open();
-                MySqlCommand coman = new MySqlCommand("insert into deportes (NomDep, Modalidad,TipPuntaje) values ('" + txtDeporte.Text + "','" + cBxMod.SelectedItem.ToString() + "','" + cBxPunt.SelectedItem.ToString() + "');", con); ;
+                MySqlCommand coman = new MySqlCommand("insert into Deportes (NomDep, Modalidad,TipPuntaje) values ('" + txtDeporte.Text + "','" + cBxMod.SelectedItem.ToString() + "','" + cBxPunt.SelectedItem.ToString() + "');", con); ;
                 coman.ExecuteNonQuery();
                 con.Close();
                 this.actualizar();
@@ -154,6 +165,19 @@ namespace Proyecto
         private void cBxEquiposBaja_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+            con.Open();
+            MySqlCommand comando = new MySqlCommand("Select NomEquipo from equipo where IdEquipo='" + cBxEquiposBaja.SelectedItem.ToString() + "'", con);
+            lector = comando.ExecuteReader();
+            if (lector.HasRows)
+            {
+                while (lector.Read())
+                {
+                    label23.Text = lector["NomEquipo"].ToString();
+                }
+            }
+            lector.Close();
+            con.Close();
+
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -166,15 +190,14 @@ namespace Proyecto
 
         private void button5_Click(object sender, EventArgs e)
         {
+            con.Open();
+            MySqlCommand baja = new MySqlCommand("DELETE FROM deportes WHERE (`IdDep` = '" + cBxDepBaja.SelectedItem.ToString() + "');", con); ;
+            baja.ExecuteNonQuery();
+            con.Close();
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-        }
-
-        private void panel4_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
     }
