@@ -39,6 +39,7 @@
             this.lblEvento = new System.Windows.Forms.Label();
             this.lblEquipos = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.cbxLenguaje = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // pnlAnuncio2
@@ -139,12 +140,25 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // cbxLenguaje
+            // 
+            this.cbxLenguaje.AutoSize = true;
+            this.cbxLenguaje.BackColor = System.Drawing.Color.Transparent;
+            this.cbxLenguaje.Location = new System.Drawing.Point(575, 467);
+            this.cbxLenguaje.Name = "cbxLenguaje";
+            this.cbxLenguaje.Size = new System.Drawing.Size(60, 17);
+            this.cbxLenguaje.TabIndex = 18;
+            this.cbxLenguaje.Text = "English";
+            this.cbxLenguaje.UseVisualStyleBackColor = false;
+            this.cbxLenguaje.CheckedChanged += new System.EventHandler(this.cbxLenguaje_CheckedChanged);
+            // 
             // Form4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Proyecto.Properties.Resources.Fondo;
             this.ClientSize = new System.Drawing.Size(800, 522);
+            this.Controls.Add(this.cbxLenguaje);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.lblEquipos);
             this.Controls.Add(this.lblEvento);
@@ -174,5 +188,6 @@
         private System.Windows.Forms.Label lblEvento;
         private System.Windows.Forms.Label lblEquipos;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckBox cbxLenguaje;
     }
 }

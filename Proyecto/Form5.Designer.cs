@@ -57,6 +57,7 @@
             this.comboBox2.Size = new System.Drawing.Size(121, 21);
             this.comboBox2.TabIndex = 1;
             this.comboBox2.Text = "Equipo/Selección";
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // lsBxIntegrantesEquipo
             // 
@@ -104,6 +105,7 @@
             this.button2.TabIndex = 14;
             this.button2.Text = "Buscar";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // cbxLenguaje
             // 
@@ -115,6 +117,7 @@
             this.cbxLenguaje.TabIndex = 15;
             this.cbxLenguaje.Text = "English";
             this.cbxLenguaje.UseVisualStyleBackColor = false;
+            this.cbxLenguaje.CheckedChanged += new System.EventHandler(this.cbxLenguaje_CheckedChanged);
             // 
             // Form5
             // 

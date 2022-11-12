@@ -7,7 +7,7 @@ namespace Proyecto
     {
         private MySqlDataReader lector;
         private MySqlCommand comando = new MySqlCommand();
-        private MySqlConnection con = new MySqlConnection("Server=127.0.0.1; Database=CorePoint; Uid=Admin; Pwd=hello;");
+        private MySqlConnection con = new MySqlConnection("Server = 192.168.5.50; Database=spacetechnology; Uid=jose.laco; Pwd=55383035;");
         private int coin;
         private Random ran = new Random();
         private String user;
@@ -143,4 +143,21 @@ namespace Proyecto
 
         }
 
+        private void cbxLenguaje_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbxLenguaje.Checked == true)
+            {
+                label1.Text = "Sports";
+                lblEquipos.Text = "Teams";
+                lblEvento.Text = "Events";
+                button1.Text = "Exit";
+            }
+            else //Cambiar a español
+            {
+                label1.Text = "Deportes";
+                lblEquipos.Text = "Equipos";
+                lblEvento.Text = "Eventos";
+                button1.Text = "Salida";
+            }
+        }
     } } 

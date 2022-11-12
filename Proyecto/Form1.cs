@@ -14,7 +14,7 @@ namespace Proyecto
 {
     public partial class Menu1 : Form
     {
-        private MySqlConnection con = new MySqlConnection("Server=127.0.0.1; Database=CorePoint; Uid=Admin; Pwd=hello;");
+        private MySqlConnection con = new MySqlConnection("Server=192.168.5.50; Database=spacetechnology; Uid=jose.laco; Pwd=55383035;");
         private Form2 form2;
         private int coin;
         private Random ran = new Random();
@@ -37,8 +37,6 @@ namespace Proyecto
                 user = lector["TipoUsuario"].ToString();
             }
             con.Close();
-            Console.WriteLine(user);
-            Console.WriteLine(a);
             if (user != "normal")
             {
             }
@@ -53,8 +51,9 @@ namespace Proyecto
                 {
                     pnlAnuncio2.BackgroundImage = Proyecto.Properties.Resources.Anuncio2;
                     pnlAnuncio1.BackgroundImage = Proyecto.Properties.Resources.Anuncio2;
-                }
-                tmrAnuncios.Interval = 120000;
+                
+            }
+            tmrAnuncios.Interval = 120000;
                 tmrAnuncios.Tick += new EventHandler(timer_Tick);
                 this.idle();
             }
@@ -152,7 +151,26 @@ namespace Proyecto
         }
         private void cbxLenguaje_CheckedChanged(object sender, EventArgs e)
         {
+            
+        }
 
+        private void cbxLenguaje_CheckedChanged_1(object sender, EventArgs e)
+        {
+            if (cbxLenguaje.Checked == true)
+            {
+                button1.Text = "Results";
+                button2.Text = "List of contents";
+                button3.Text = "Sportsmen";
+                button4.Text = "Exit";
+            }
+            else //Cambiar a español
+            {
+
+                button1.Text = "Partidos";
+                button2.Text = "Lista de contenidos";
+                button3.Text = "Deportistas";
+                button4.Text = "Salida";
+            }
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Proyecto
 {
     public partial class Form5 : Form
     {
-        private MySqlConnection con = new MySqlConnection("Server=127.0.0.1; Database=CorePoint; Uid=Admin; Pwd=hello;");
+        private MySqlConnection con = new MySqlConnection("Server=192.168.5.50; Database=spacetechnology; Uid=jose.laco; Pwd=55383035;");
         private int coin;
         private Random ran = new Random();
         private String user;
@@ -104,6 +104,7 @@ namespace Proyecto
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             con.Open();
+            comboBox2.Items.Clear();
             MySqlDataReader lector;
             MySqlCommand comm = new MySqlCommand("Select * from equipo, deportes where NomDep='" + comboBox1.SelectedItem.ToString() + "' and IdDeporteJuega=IdDep", con); ;
             lector = comm.ExecuteReader();
@@ -116,6 +117,41 @@ namespace Proyecto
             }
             lector.Close();
             con.Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            lsBxIntegrantesEquipo.Items.Clear();
+            lsBxIntegrantesEquipo.Items.Add("ID|Nombre/Name|Dorsal/Jersey #");
+            con.Open();
+            MySqlDataReader lector;
+            MySqlCommand comando = new MySqlCommand ("Select * from deportes, equipo, deportistas where NomDep='"+comboBox1.SelectedItem.ToString()+"' and  NomEquipo='"+comboBox2.SelectedItem.ToString()+ "' and IdDep = IdDeporteJuega and equipo.IdEquipo=deportistas.IdEquipo ; ", con);
+            lector = comando.ExecuteReader();
+            while (lector.Read())
+            {
+                lsBxIntegrantesEquipo.Items.Add((lector["IdDeportista"] + "|" + lector["NomDeportista"] + "|" + lector["Dorsal"]));
+            }
+            con.Close();
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbxLenguaje_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbxLenguaje.Checked == true)
+            {
+                button1.Text = "Exit";
+                button2.Text = "Search";
+            }
+            else //Cambiar a español
+            {
+
+                button1.Text = "Salir";
+                button2.Text = "Buscar";
+            }
         }
     }
 }

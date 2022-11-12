@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.pnlInicioSesion = new System.Windows.Forms.Panel();
+            this.lblInicio = new System.Windows.Forms.Button();
             this.pnlRegistro = new System.Windows.Forms.Panel();
             this.pnlOtro = new System.Windows.Forms.Panel();
             this.btnConfirmar = new System.Windows.Forms.Label();
@@ -49,7 +50,6 @@
             this.txtCont = new System.Windows.Forms.TextBox();
             this.cbxLenguaje = new System.Windows.Forms.CheckBox();
             this.txtMail = new System.Windows.Forms.TextBox();
-            this.lblInicio = new System.Windows.Forms.Button();
             this.pnlInicioSesion.SuspendLayout();
             this.pnlRegistro.SuspendLayout();
             this.pnlOtro.SuspendLayout();
@@ -72,6 +72,21 @@
             this.pnlInicioSesion.Size = new System.Drawing.Size(695, 269);
             this.pnlInicioSesion.TabIndex = 1;
             this.pnlInicioSesion.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlInicioSesion_Paint);
+            // 
+            // lblInicio
+            // 
+            this.lblInicio.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.lblInicio.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.lblInicio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblInicio.Font = new System.Drawing.Font("Shotgun", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInicio.ForeColor = System.Drawing.Color.LightGoldenrodYellow;
+            this.lblInicio.Location = new System.Drawing.Point(221, 182);
+            this.lblInicio.Name = "lblInicio";
+            this.lblInicio.Size = new System.Drawing.Size(82, 30);
+            this.lblInicio.TabIndex = 18;
+            this.lblInicio.Text = "Inicio";
+            this.lblInicio.UseVisualStyleBackColor = false;
+            this.lblInicio.Click += new System.EventHandler(this.lblInicio_Click);
             // 
             // pnlRegistro
             // 
@@ -232,9 +247,9 @@
             this.lblInvitado.Font = new System.Drawing.Font("Trebuchet MS", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInvitado.Location = new System.Drawing.Point(88, 133);
             this.lblInvitado.Name = "lblInvitado";
-            this.lblInvitado.Size = new System.Drawing.Size(162, 16);
+            this.lblInvitado.Size = new System.Drawing.Size(157, 16);
             this.lblInvitado.TabIndex = 15;
-            this.lblInvitado.Text = "Inisciar sesión como invitado";
+            this.lblInvitado.Text = "Iniciar sesión como invitado";
             this.lblInvitado.Click += new System.EventHandler(this.lblInvitado_Click);
             // 
             // lblCorr
@@ -284,21 +299,6 @@
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(194, 20);
             this.txtMail.TabIndex = 9;
-            // 
-            // lblInicio
-            // 
-            this.lblInicio.BackColor = System.Drawing.Color.DarkOliveGreen;
-            this.lblInicio.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.lblInicio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblInicio.Font = new System.Drawing.Font("Shotgun", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInicio.ForeColor = System.Drawing.Color.LightGoldenrodYellow;
-            this.lblInicio.Location = new System.Drawing.Point(221, 182);
-            this.lblInicio.Name = "lblInicio";
-            this.lblInicio.Size = new System.Drawing.Size(82, 30);
-            this.lblInicio.TabIndex = 18;
-            this.lblInicio.Text = "Incio";
-            this.lblInicio.UseVisualStyleBackColor = false;
-            this.lblInicio.Click += new System.EventHandler(this.lblInicio_Click);
             // 
             // InicioRegistro
             // 

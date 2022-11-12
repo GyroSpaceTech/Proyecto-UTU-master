@@ -15,7 +15,7 @@ namespace Proyecto
 {
     public partial class InicioRegistro : Form
     {
-        private MySqlConnection con = new MySqlConnection("Server=127.0.0.1; Database=CorePoint; Uid=Admin; Pwd=hello;");
+        private MySqlConnection con = new MySqlConnection("Server=192.168.5.50; Database=spacetechnology; Uid=jose.laco; Pwd=55383035;");
         private MySqlDataReader lector;
         private Logica logic = new Logica();
         public InicioRegistro()
@@ -31,36 +31,44 @@ namespace Proyecto
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            if (txtMail.Text.Equals(null) || txtCont.Text.Equals(null) || txtContConf.Text.Equals(null))
+            try
             {
-                txtError2.Visible = true;
-                txtError2.Text = "*Error espacio/os sin llenar*";
-            }
-            else
-            {
-                if (txtContRegistro.Text.Equals(txtContConf.Text))
+                if (txtMail.Text.Equals(null) || txtCont.Text.Equals(null) || txtContConf.Text.Equals(null))
                 {
-                    if (cbxDominio.SelectedItem.ToString() != "Otro/Other") { 
-                    Console.WriteLine(txtCorreoRegistro.Text + cbxDominio.SelectedItem);
-                    con.Open();
-                    MySqlCommand crn = new MySqlCommand("insert into usuarios values('" + txtCorreoRegistro.Text + cbxDominio.SelectedItem + "','" + txtContRegistro.Text + "','normal') ", con);
-                    crn.ExecuteNonQuery();
-                    con.Close();
-                    }
-                    else
-                    {
-                        Console.WriteLine(txtCorreoRegistro.Text + cbxDominio.SelectedItem);
-                        con.Open();
-                        MySqlCommand crn = new MySqlCommand("insert into usuarios values('" + txtCorreoRegistro.Text + txtElectronico.Text + "','" + txtContRegistro.Text + "','normal') ", con);
-                        crn.ExecuteNonQuery();
-                        con.Close();
-                    }
+                    txtError2.Visible = true;
+                    txtError2.Text = "*Error espacio/os sin llenar*";
                 }
                 else
                 {
-                    txtError2.Visible = true;
-                    txtError2.Text = "*Error contrseñas no coinciden*";
+                    if (txtContRegistro.Text.Equals(txtContConf.Text))
+                    {
+                        if (cbxDominio.SelectedItem.ToString() != "Otro/Other" && cbxDominio.SelectedItem.ToString()!= null)
+                        {
+                            Console.WriteLine(txtCorreoRegistro.Text + cbxDominio.SelectedItem);
+                            con.Open();
+                            MySqlCommand crn = new MySqlCommand("insert into usuarios values('" + txtCorreoRegistro.Text + cbxDominio.SelectedItem + "','" + txtContRegistro.Text + "','normal') ", con);
+                            crn.ExecuteNonQuery();
+                            con.Close();
+                        }
+                        else
+                        {
+                            Console.WriteLine(txtCorreoRegistro.Text + cbxDominio.SelectedItem);
+                            con.Open();
+                            MySqlCommand crn = new MySqlCommand("insert into usuarios values('" + txtCorreoRegistro.Text + txtElectronico.Text + "','" + txtContRegistro.Text + "','normal') ", con);
+                            crn.ExecuteNonQuery();
+                            con.Close();
+                        }
+                    }
+                    else
+                    {
+                        txtError2.Visible = true;
+                        txtError2.Text = "*Error contrseñas no coinciden*";
+                    }
                 }
+            }catch (Exception f)
+            {
+                MessageBox.Show(f.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Dispose();
             }
         }
 
@@ -93,78 +101,8 @@ namespace Proyecto
             }
         }
 
-        private void label8_Click(object sender, EventArgs e) //al precionar iniciar:
+        private void label8_Click(object sender, EventArgs e) 
         {
-            String nombre = null;
-            String password = null;
-            int test = 0;
-            int confirm = 0;
-            char[] caracteres;
-            caracteres = txtMail.Text.ToCharArray();
-
-            foreach (char s in caracteres)
-            {
-                test = test + 1;
-                if (s == '@')
-                {
-                    confirm = test + 1;
-                }
-                else
-                {
-                    test = test + 1;
-                }
-            }
-            Console.WriteLine(confirm);
-
-            if (txtMail.Text != "" && txtCont.Text != "")
-            {
-                con.Open();
-                MySqlCommand crn = new MySqlCommand("Select Contra, TipoUsuario from usuarios where correo='" + txtMail.Text + "';", con);
-                lector = crn.ExecuteReader();
-                password = txtCont.Text;
-                String tipoUsr = null;
-                if (lector.HasRows)
-                {
-                    while (lector.Read())
-                    {
-                        switch (password == lector["Contra"].ToString())
-                        {
-                            case true:
-                                tipoUsr = lector["TipoUsuario"].ToString();
-                                break;
-                        }
-                    }
-                }
-                if (password == txtCont.Text)
-                {
-                    switch (tipoUsr)
-                    {
-                        case "normal":
-                            lector.Close();
-                            con.Close();
-                            Menu1 f1 = new Menu1();
-                            f1.Show();
-                            logic.Registro(txtMail.Text);
-                            break;
-                        case "pro":
-                            lector.Close();
-                            con.Close();
-                            Menu1 f2 = new Menu1();
-                            f2.Show();
-                            logic.Registro(txtMail.Text);
-                            break;
-                        case "Admin":
-                            break;
-                    }
-                }
-            }
-            else
-            {
-
-
-            }
-
-            con.Close();
         }
 
         private void lblCOnt_Click(object sender, EventArgs e)
@@ -204,11 +142,12 @@ namespace Proyecto
         {
             try
             {
-                lector.Close();
-                con.Close();
-            }catch(Exception g) { }
-            Menu1 f1 = new Menu1();
-            f1.Show();
+                logic.Registro("NormalUser@gmail.com");
+                Menu1 f1 = new Menu1();
+                f1.Show();
+            }
+            catch(Exception g) { }
+           
         }
 
         private void cbxLenguaje_CheckedChanged(object sender, EventArgs e)
@@ -220,20 +159,22 @@ namespace Proyecto
                 lblContr.Text = "Password";
                 lblCOnt.Text = "Password";
                 lblConfCOnt.Text = "Confirm Password";
-                txtError2.Text = "*Error, the passwords don't coincide*";
+                txtError2.Text = "*Error passwords don't match*";
                 txtRegistrarme.Text = "Sign Up";
                 lblInicio.Text = "Log In";
+                lblInvitado.Text = "Log in as temporary user";
             }
             else //Cambiar a español
             {
-                lblCorr.Text = "Email";
-                lblCorreo.Text = "Email";
-                lblContr.Text = "Password";
-                lblCOnt.Text = "Password";
-                lblConfCOnt.Text = "Confirm Password";
-                txtError2.Text = "*Error, the passwords don't coincide*";
-                txtRegistrarme.Text = "Sign Up";
-                lblInicio.Text = "Log In";
+                lblCorr.Text = "Correo electronico";
+                lblCorreo.Text = "Correo electronico";
+                lblContr.Text = "Contraseña";
+                lblCOnt.Text = "Contraseña";
+                lblConfCOnt.Text = "Confirmar Contraseña";
+                txtError2.Text = "*Error, las contraseñas no coinciden*";
+                txtRegistrarme.Text = "Registrarme";
+                lblInicio.Text = "Iniciar";
+                lblInvitado.Text = "Iniciar sesión como invitado";
             }
         }
 
@@ -287,18 +228,23 @@ namespace Proyecto
                         case "normal":
                             lector.Close();
                             con.Close();
+
+                            logic.Registro(txtMail.Text);
                             Menu1 f1 = new Menu1();
                             f1.Show();
-                            logic.Registro(txtMail.Text);
                             break;
                         case "pro":
                             lector.Close();
                             con.Close();
+                            logic.Registro(txtMail.Text);
                             Menu1 f2 = new Menu1();
                             f2.Show();
-                            logic.Registro(txtMail.Text);
                             break;
                         case "Admin":
+                            lector.Close();
+                            con.Close();
+                            FormAdmin1 formAd = new FormAdmin1();
+                            formAd.Show();
                             break;
                     }
                 }

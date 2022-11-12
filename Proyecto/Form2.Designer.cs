@@ -50,6 +50,7 @@ namespace Proyecto
             this.lstBxE1 = new System.Windows.Forms.ListBox();
             this.lstBxEvento = new System.Windows.Forms.ListBox();
             this.lstBxResultados = new System.Windows.Forms.ListBox();
+            this.cbxLenguaje = new System.Windows.Forms.CheckBox();
             this.pnlAnuncio1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.pnlResultados.SuspendLayout();
@@ -91,7 +92,7 @@ namespace Proyecto
             this.button1.BackColor = System.Drawing.Color.DarkOliveGreen;
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Shotgun", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.LightGoldenrodYellow;
             this.button1.Location = new System.Drawing.Point(297, 391);
             this.button1.Name = "button1";
@@ -253,6 +254,18 @@ namespace Proyecto
             this.lstBxResultados.Size = new System.Drawing.Size(39, 370);
             this.lstBxResultados.TabIndex = 0;
             // 
+            // cbxLenguaje
+            // 
+            this.cbxLenguaje.AutoSize = true;
+            this.cbxLenguaje.BackColor = System.Drawing.Color.Transparent;
+            this.cbxLenguaje.Location = new System.Drawing.Point(417, 463);
+            this.cbxLenguaje.Name = "cbxLenguaje";
+            this.cbxLenguaje.Size = new System.Drawing.Size(60, 17);
+            this.cbxLenguaje.TabIndex = 17;
+            this.cbxLenguaje.Text = "English";
+            this.cbxLenguaje.UseVisualStyleBackColor = false;
+            this.cbxLenguaje.CheckedChanged += new System.EventHandler(this.cbxLenguaje_CheckedChanged);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -260,6 +273,7 @@ namespace Proyecto
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(831, 586);
             this.ControlBox = false;
+            this.Controls.Add(this.cbxLenguaje);
             this.Controls.Add(this.CBDeporte);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pnlAnuncio);
@@ -273,6 +287,7 @@ namespace Proyecto
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.pnlResultados.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -296,5 +311,6 @@ namespace Proyecto
         private System.Windows.Forms.ListBox lstBxTimempoBron;
         private System.Windows.Forms.ListBox lstBxTiempoPlata;
         private System.Windows.Forms.ListBox lstBxTiempoOro;
+        private System.Windows.Forms.CheckBox cbxLenguaje;
     }
 }

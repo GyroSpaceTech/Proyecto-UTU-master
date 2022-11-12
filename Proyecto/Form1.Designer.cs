@@ -99,7 +99,7 @@ namespace Proyecto
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(325, 95);
             this.button3.TabIndex = 14;
-            this.button3.Text = "Deportitas";
+            this.button3.Text = "Deportistas";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -128,6 +128,7 @@ namespace Proyecto
             this.cbxLenguaje.TabIndex = 16;
             this.cbxLenguaje.Text = "English";
             this.cbxLenguaje.UseVisualStyleBackColor = false;
+            this.cbxLenguaje.CheckedChanged += new System.EventHandler(this.cbxLenguaje_CheckedChanged_1);
             // 
             // Menu1
             // 
